@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter , Routes , Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
+
 import AdminDashboard from './pages/AdminDashboard'
 import DepartmentList from './components/department/DepartmentList'
 import AddDepartment from './components/department/AddDepartment'
@@ -12,6 +13,7 @@ import List from './components/employee/List'
 import Add from './components/employee/Add'
 import View from './components/employee/View'
 import Edit from './components/employee/Edit'
+
 function App() {
   const [count, setCount] = useState(0)
 
