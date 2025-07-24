@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link ,NavLink} from 'react-router-dom'
-import {FaBuilding, FaCalendarAlt, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUser} from "react-icons/fa"
+import {FaBuilding, FaCalendarAlt, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUser, FaUserCheck, FaClipboard, FaClipboardList} from "react-icons/fa"
 const AdminSidebar = () => {
   return (
     <div className='bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64'>
@@ -26,11 +26,14 @@ const AdminSidebar = () => {
           <span>Leave</span>
         </NavLink>
         <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded">
+          <FaClipboardList/> 
+          <span>Attendance</span>
+        </NavLink>
+        <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded">
           <FaMoneyBillWave/> 
           <span>Salary</span>
         </NavLink>
-         <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded
-">
+         <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded">
           <FaCogs/> 
           <span>Setting</span>
         </NavLink>
