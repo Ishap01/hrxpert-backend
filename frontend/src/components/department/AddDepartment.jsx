@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-
+import{useNavigate}from 'react-router-dom'
+import axios from 'axios'
 const AddDepartment = () => {
+  const navigate = useNavigate();
   const[department, setDepartment] = useState({
     dep_name:"",
     description:""
@@ -16,7 +18,14 @@ const handleChange  = (e)=>{
 const handleSubmit =async(e)=>{
   e.preventDefault();
   try{
-      const response = await axios.post('http://localhost:5000/api/department/add',department);
+      const response = await axios.post('http://localhost:5000/api/department/add',department,{
+        headers:{
+          // Authorization : `Bearer${localstorage.getItem('token)}`
+        }
+      });
+      if(response.data.success){
+        navigate("/admin-dashboard/department")
+      }
   }
   catch(error){
     if(error.response && !error.response.data.success){
