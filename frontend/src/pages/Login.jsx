@@ -54,13 +54,13 @@ const Login = () => {
         >
           <Form>
                     <div className="mb-3">
-                    <Field name="email"  className="form-control" type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
+                    <Field name="email" type="email"  className="form-control"  placeholder="Email"  />
                     <ErrorMessage name="email" component="div" className="text-danger small" />
                     </div>
           
                     <div className="mb-3">
-                    <input name="password"  className="form-control" type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
-                    <ErrorMessage name="password" component="div" className="error-text" />
+                    <Field name="password"  className="form-control" type="password" placeholder="Password"  />
+                    <ErrorMessage name="password" component="div" className="text-danger small" />
                     </div>
                     <div className="d-grid">
                     <button type="submit" className="btn btn-primary">Log in</button>
