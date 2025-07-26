@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link ,NavLink} from 'react-router-dom'
-import {FaBuilding, FaCalendarAlt, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUser} from "react-icons/fa"
+import {FaBuilding, FaCalendarAlt,FaClipboardList, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUser} from "react-icons/fa"
 const AdminSidebar = () => {
   return (
     <div className='bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64'>
@@ -14,22 +14,26 @@ const AdminSidebar = () => {
         <span>Dashboard</span>
        </NavLink>
         <NavLink to="/admin-dashboard/employees" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
-          <FaUser/> 
+          <FaUser /> 
           <span>Employee</span>
         </NavLink>
          <NavLink to="/admin-dashboard/department" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaBuilding/> 
           <span>Departments</span>
         </NavLink>
-         <NavLink to="" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
-          <FaCalendarAlt/> 
+         <NavLink to="/admin-dashboard/leave" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+          <FaClipboardList/> 
           <span>Leave</span>
         </NavLink>
-        <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded">
+        <NavLink to="/admin-dashboard/attendance" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+          <FaCalendarAlt/> 
+          <span>Attendance</span>
+        </NavLink>
+        <NavLink to="/salary" className="flex items-center space-x-4  py-2.5 px-4 rounded">
           <FaMoneyBillWave/> 
           <span>Salary</span>
         </NavLink>
-         <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded
+         <NavLink to="/setting" className="flex items-center space-x-4  py-2.5 px-4 rounded
 ">
           <FaCogs/> 
           <span>Setting</span>

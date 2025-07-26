@@ -5,6 +5,9 @@ import main from './config/db.js'
 import employeeRouter from "./routes/employee.js";
 import departmentRouter from './routes/department.js'
 import dashboardRouter from './routes/dashboard.js'
+import attendanceRouter  from './routes/attendance.js';
+
+
 dotenv.config()
 
 const app = express()
@@ -19,7 +22,12 @@ app.use(express.static('public/uploads'))
 app.use('/api/department',departmentRouter)
 app.use("/api/employee", employeeRouter);
 app.use("/api/dashboard",dashboardRouter)
+app.use('/api/attendance', attendanceRouter);
+app.use("/api/employees", employeeRouter);
+
+
 const PORT = process.env.PORT || 3000
+console.log('PORT from env:', process.env.PORT);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
