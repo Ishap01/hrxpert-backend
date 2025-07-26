@@ -29,11 +29,11 @@ const AdminSidebar = () => {
           <FaCalendarAlt/> 
           <span>Attendance</span>
         </NavLink>
-        <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded">
+        <NavLink to="/salary" className="flex items-center space-x-4  py-2.5 px-4 rounded">
           <FaMoneyBillWave/> 
           <span>Salary</span>
         </NavLink>
-         <NavLink to="" className="flex items-center space-x-4  py-2.5 px-4 rounded
+         <NavLink to="/setting" className="flex items-center space-x-4  py-2.5 px-4 rounded
 ">
           <FaCogs/> 
           <span>Setting</span>
