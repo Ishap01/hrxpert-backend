@@ -17,6 +17,7 @@ import Edit from './components/employee/Edit'
 import AdminSidebar from './components/dashboard/AdminSidebar'
 import AttendanceManager from './components/attendance/AttendanceManager'
 import LeaveManager from './components/leave/LeaveManager'
+import SalaryManager from './components/salary/SalaryManager'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -40,6 +41,7 @@ function App() {
         <Route path="/admin-dashboard/add-employee" element={<Add/>}/>
         <Route path="/admin-dashboard/attendance" element={<AttendanceManager />} />
         <Route path="/admin-dashboard/leave" element={<LeaveManager />} />
+        <Route path="/admin-dashboard/salary" element={<SalaryManager />} />
         
 
 
