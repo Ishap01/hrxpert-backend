@@ -36,7 +36,7 @@ const handleSubmit =async(e)=>{
 }
   return (
  
-      <div className='max-w-3xl max-auto mt-10 bg-white p-8 rounded-md shadow-md w-96'>
+      <div className='max-w-3xl max-auto mt-10 bg-white p-8 rounded-md shadow-md w-96 align-middle ml-110' >
         <h2 className='text-2xl font-bold mb-6'>Add Department</h2>
         <form className='' onSubmit={handleSubmit}>
             <div>
