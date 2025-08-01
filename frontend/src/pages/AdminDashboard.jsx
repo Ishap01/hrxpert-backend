@@ -6,7 +6,7 @@ import AdminSummary from '../components/dashboard/AdminSummary'
 const AdminDashboard = () => {
   return (
     
-      <div className='p-8 bg-gray-100 h-screen'>
+      <div className='px-8 bg-gray-100 '>
         <Navbar/>
         <AdminSummary/>
       </div>
