@@ -1,16 +1,33 @@
-import express from 'express';
-import cors from 'cors';
-import authRoutes from './routes/auth.js';
-import connectToDatabase from './config/db.js';
-import dotenv from 'dotenv';
-dotenv.config();
-
-connectToDatabase()
-const app = express();
-app.use(cors());
-app.use(express.json());
-app.use('/api/auth', authRoutes);
+import express from 'express'
+import cors from 'cors'
+import dotenv from 'dotenv'
+import main from './config/db.js'
+import employeeRouter from "./routes/employee.js";
+import departmentRouter from './routes/department.js'
+import dashboardRouter from './routes/dashboard.js'
+import attendanceRouter  from './routes/attendance.js';
 
 
+dotenv.config()
 
-app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
+const app = express()
+
+app.use(cors())
+app.use(express.json())
+
+app.get('/', (req, res) => {
+  res.send('API is up and running!')
+})
+app.use(express.static('public/uploads'))
+app.use('/api/department',departmentRouter)
+app.use("/api/employee", employeeRouter);
+app.use("/api/dashboard",dashboardRouter)
+app.use('/api/attendance', attendanceRouter);
+app.use("/api/employees", employeeRouter);
+
+
+const PORT = process.env.PORT || 3000
+console.log('PORT from env:', process.env.PORT);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`)
+})

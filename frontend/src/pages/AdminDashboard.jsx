@@ -1,0 +1,17 @@
+import React from 'react'
+import AdminSidebar from '../components/dashboard/AdminSidebar'
+import Navbar from '../components/dashboard/Navbar'
+import AdminSummary from '../components/dashboard/AdminSummary'
+
+const AdminDashboard = () => {
+  return (
+    
+      <div className='p-8 bg-gray-100 h-screen'>
+        <Navbar/>
+        <AdminSummary/>
+      </div>
+   
+  )
+}
+
+export default AdminDashboard
