@@ -5,6 +5,7 @@ import './App.css'
 import { BrowserRouter , Routes , Route } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 
+import Login from './pages/Login';
 
 import AdminDashboard from './pages/AdminDashboard'
 import DepartmentList from './components/department/DepartmentList'
@@ -28,6 +29,7 @@ function App() {
         <AdminSidebar />
         <div style={{ marginLeft: '256px', flex: 1 }}>
       <Routes>
+        
         <Route path="/" element={<Navigate to="/admin-dashboard"/>}></Route>
         <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
         <Route path="/admin-dashboard/department" element={<DepartmentList/>}/>
