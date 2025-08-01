@@ -2,8 +2,8 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  useLocation,
   Navigate,
+  Outlet,
 } from 'react-router-dom';
 
 import Register from './pages/Register';
@@ -26,137 +26,62 @@ import LeaveManager from './components/leave/LeaveManager';
 import AdminSidebar from './components/dashboard/AdminSidebar';
 import PrivateRoute from '../utils/PrivateRoutes';
 
-function AppWrapper() {
-  const location = useLocation();
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const isAdmin = user?.role === 'admin';
-
-  const isAdminRoute = /^\/admin-dashboard(\/.*)?$/.test(location.pathname);
-
-  const hideSidebarPaths = ['/', '/login'];
-  const shouldHideSidebar = hideSidebarPaths.includes(location.pathname);
-
+// Admin layout component directly in this file
+const AdminLayout = () => {
   return (
     <div style={{ display: 'flex' }}>
-    <AdminSidebar />
-
-      <div
-        style={{
-          flex: 1,
-          marginLeft: token && isAdmin && isAdminRoute && !shouldHideSidebar ? '220px' : '0',
-          padding: '20px',
-        }}
-      >
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-
-          {/* Employee Route */}
-          <Route
-            path="/employee-dashboard"
-            element={
-              <PrivateRoute>
-                <EmployeeDashboard />
-              </PrivateRoute>
-            }
-          />
-
-          {/* Admin Dashboard + Child Routes */}
-          <Route
-            path="/admin-dashboard"
-            element={
-              <PrivateRoute>
-                <AdminDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/department"
-            element={
-              <PrivateRoute>
-                <DepartmentList />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/add-department"
-            element={
-              <PrivateRoute>
-                <AddDepartment />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/department/:id"
-            element={
-              <PrivateRoute>
-                <EditDepartment />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/employees"
-            element={
-              <PrivateRoute>
-                <List />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/add-employee"
-            element={
-              <PrivateRoute>
-                <Add />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/employee/:id"
-            element={
-              <PrivateRoute>
-                <View />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/employee/edit/:id"
-            element={
-              <PrivateRoute>
-                <Edit />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/attendance"
-            element={
-              <PrivateRoute>
-                <AttendanceManager />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin-dashboard/leave"
-            element={
-              <PrivateRoute>
-                <LeaveManager />
-              </PrivateRoute>
-            }
-          />
-
-          {/* Catch all */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+      <AdminSidebar />
+      <div style={{ marginLeft: '220px', padding: '20px', flex: 1 }}>
+        <Outlet />
       </div>
     </div>
   );
-}
+};
 
 export default function App() {
   return (
     <BrowserRouter>
-      <AppWrapper />
+      <Routes>
+
+        {/* Public Routes */}
+        <Route path="/" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Employee Route */}
+        <Route
+          path="/employee-dashboard"
+          element={
+            <PrivateRoute>
+              <EmployeeDashboard />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Admin Routes with Sidebar Layout */}
+        <Route
+          path="/admin-dashboard"
+          element={
+            <PrivateRoute>
+              <AdminLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="department" element={<DepartmentList />} />
+          <Route path="add-department" element={<AddDepartment />} />
+          <Route path="department/:id" element={<EditDepartment />} />
+          <Route path="employees" element={<List />} />
+          <Route path="add-employee" element={<Add />} />
+          <Route path="employee/:id" element={<View />} />
+          <Route path="employee/edit/:id" element={<Edit />} />
+          <Route path="attendance" element={<AttendanceManager />} />
+          <Route path="leave" element={<LeaveManager />} />
+        </Route>
+
+        {/* Catch-all fallback */}
+        <Route path="*" element={<Navigate to="/" />} />
+
+      </Routes>
     </BrowserRouter>
   );
 }
