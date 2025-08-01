@@ -8,33 +8,32 @@ const AdminSidebar = () => {
         <h3 className='text-2xl font-pecific text-center'>HRXpert</h3>
       </div>
       
-    <div>
-        <NavLink to="/admin-dashboard" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+    <div >
+        <NavLink to="/admin-dashboard" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
          <FaTachometerAlt />
         <span>Dashboard</span>
        </NavLink>
-        <NavLink to="/admin-dashboard/employees" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+        <NavLink to="/admin-dashboard/employees" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaUser /> 
           <span>Employee</span>
         </NavLink>
-         <NavLink to="/admin-dashboard/department" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+         <NavLink to="/admin-dashboard/department" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline  flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaBuilding/> 
           <span>Departments</span>
         </NavLink>
-         <NavLink to="/admin-dashboard/leave" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+         <NavLink to="/admin-dashboard/leave" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline  flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaClipboardList/> 
           <span>Leave</span>
         </NavLink>
-        <NavLink to="/admin-dashboard/attendance" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} flex items-center space-x-4 py-2.5 px-4 rounded`}>
+        <NavLink to="/admin-dashboard/attendance" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline  flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaCalendarAlt/> 
           <span>Attendance</span>
         </NavLink>
-        <NavLink to="/salary" className="flex items-center space-x-4  py-2.5 px-4 rounded">
+        <NavLink to="/salary" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaMoneyBillWave/> 
           <span>Salary</span>
         </NavLink>
-         <NavLink to="/setting" className="flex items-center space-x-4  py-2.5 px-4 rounded
-">
+         <NavLink to="/setting" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaCogs/> 
           <span>Setting</span>
         </NavLink>
