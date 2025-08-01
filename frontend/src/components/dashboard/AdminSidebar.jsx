@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link ,NavLink} from 'react-router-dom'
-import {FaBuilding, FaCalendarAlt,FaClipboardList, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUser} from "react-icons/fa"
+import {FaBuilding, FaCalendarAlt,FaClipboardList, FaCogs,FaFilePdf, FaMoneyBillWave, FaTachometerAlt, FaUser} from "react-icons/fa"
 const AdminSidebar = () => {
   return (
     <div className='bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64'>
@@ -32,6 +32,10 @@ const AdminSidebar = () => {
         <NavLink to="/salary" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaMoneyBillWave/> 
           <span>Salary</span>
+        </NavLink>
+         <NavLink to="/salary" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
+          <FaFilePdf/> 
+          <span>Documents</span>
         </NavLink>
         
     </div>
