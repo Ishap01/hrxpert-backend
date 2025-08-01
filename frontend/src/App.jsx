@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter , Routes , Route } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Routes, Route } from 'react-router-dom';
+import Register from './pages/Register';
+ import Login from './pages/Login';
+ import EmployeeDashboard from './pages/EmployeeDashboard';
 
 import Login from './pages/Login';
 
@@ -22,6 +20,7 @@ import LeaveManager from './components/leave/LeaveManager'
 function App() {
   const [count, setCount] = useState(0)
 
+function App() {
   return (
     <>
       <BrowserRouter>
@@ -54,5 +53,4 @@ function App() {
   )
 }
 
-export default App
-
+export default App;
