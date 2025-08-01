@@ -1,10 +1,9 @@
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route,BrowserRouter} from 'react-router-dom';
 import Register from './pages/Register';
- import Login from './pages/Login';
+ 
  import EmployeeDashboard from './pages/EmployeeDashboard';
-
 import Login from './pages/Login';
-
+ 
 import AdminDashboard from './pages/AdminDashboard'
 import DepartmentList from './components/department/DepartmentList'
 import AddDepartment from './components/department/AddDepartment'
@@ -17,8 +16,7 @@ import AdminSidebar from './components/dashboard/AdminSidebar'
 import AttendanceManager from './components/attendance/AttendanceManager'
 import LeaveManager from './components/leave/LeaveManager'
 
-function App() {
-  const [count, setCount] = useState(0)
+
 
 function App() {
   return (
@@ -28,8 +26,11 @@ function App() {
         <AdminSidebar />
         <div style={{ marginLeft: '256px', flex: 1 }}>
       <Routes>
-        
-        <Route path="/" element={<Navigate to="/admin-dashboard"/>}></Route>
+       
+        <Route path="/login" element={<Login />} /> 
+        <Route path="/" element={<Register />} />
+        <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
+        <Route path="/admin-dashboard" element={<Navigate to="/admin-dashboard"/>}></Route>
         <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
         <Route path="/admin-dashboard/department" element={<DepartmentList/>}/>
         <Route path="/admin-dashboard/add-department" element={<AddDepartment/>}/>

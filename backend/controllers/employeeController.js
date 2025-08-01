@@ -1,5 +1,5 @@
 import Employee from "../models/Employee.js"
-import User from "../models/User.js"
+import User from "../models/Users.js"
 import Department from "../models/Department.js"
 import bcrypt from'bcrypt'
 import path from "path"
