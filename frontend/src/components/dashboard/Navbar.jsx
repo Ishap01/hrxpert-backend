@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <div className='mt-0 flex items-center text-white justify-between h-18 bg-teal-300 px-5 '>
+    <div className='mt-0 flex items-center text-white justify-between h-18 bg-teal-300 px-5 shadow-md p-4 sticky top-0 z-50 '>
     {/* fetch user from use Auth to dispaly name  */}
       <p className=''>Welcome Admin</p>
       <button className='px-4 py-1 bg-teal-500 hover:bg-teal-700' onClick={() => navigate("/")}>Logout</button>
