@@ -31,7 +31,7 @@ const getPayslip = async (req, res) => {
 
   try {
       const empId = req.params.employeeId;
- console.log("Received request for payslip of:", req.params.empId);
+ 
   
     const employee = await Employee.findOne({ employeeId: empId });
 
