@@ -8,9 +8,9 @@ try{
  const totalSalaries = await Employee.aggregate([
     {$group:{_id: null, totalSalary : {$sum : "$salary"}}}
  ])
- //const employeeAppliedForLeave = wait Leave.distinct('employeeId')
-  
- return res.status(200).json({success:true,totalEmployees,totalDepartments,totalSalaries})
+ 
+  const totalSalary = totalSalaries[0]?.totalSalary || 0;
+ return res.status(200).json({success:true,totalEmployees,totalDepartments,totalSalary})
 }catch(error){
     return res.status(500).json({message:"error in fetching employee count"})
 }

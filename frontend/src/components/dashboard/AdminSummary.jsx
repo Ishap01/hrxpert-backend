@@ -35,7 +35,7 @@ const AdminSummary = () => {
     { name: 'Rejected', value: 3 }
   ]
 
-  const COLORS = ['#14b8a6', '#facc15', '#f87171'] // teal, yellow, red
+  const COLORS = ['#14b8a6', '#facc15', '#f87171'] 
 
   useEffect(() => {
     const fetchSummary = async () => {
@@ -74,7 +74,7 @@ const AdminSummary = () => {
         <SummaryCard
           icon={FaMoneyBill}
           text="Monthly Pay"
-          number={`$${summary.totalMonthlyPay || 654}`}
+          number={`$${summary.totalSalary}`}
           color="bg-red-400"
         />
       </div>
