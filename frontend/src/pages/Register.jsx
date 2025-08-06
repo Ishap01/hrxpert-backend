@@ -3,8 +3,9 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-import signup_img  from '../assets/signup_img.png'
+//import signup_img  from '../assets/signup_img.png'
 //import img11  from '../assets/img11.png'
+import img22  from '../assets/img22.png'
 const Register = () => {
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const Register = () => {
           <div className="text-white text-center space-y-4">
             <h2 className="text-4xl font-bold">Welcome to HR Xpert</h2>
             <p className="text-lg">Join us and simplify your employee management!</p>
-            <img src={signup_img} alt="Register" className="w-80 h-60 mx-auto mt-6 bg-transparent" />
+            <img src={img22} alt="Register" className="w-70 h-70 mx-auto mt-4 bg-transparent" />
           </div>
         </div>
 

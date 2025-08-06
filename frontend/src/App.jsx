@@ -25,7 +25,7 @@ import LeaveManager from './components/leave/LeaveManager';
 
 import AdminSidebar from './components/dashboard/AdminSidebar';
 import PrivateRoute from '../utils/PrivateRoutes';
-
+import SalaryManager from './components/salary/SalaryManager'
 // Admin layout component directly in this file
 const AdminLayout = () => {
   return (
@@ -76,6 +76,7 @@ export default function App() {
           <Route path="employee/edit/:id" element={<Edit />} />
           <Route path="attendance" element={<AttendanceManager />} />
           <Route path="leave" element={<LeaveManager />} />
+           <Route path="/admin-dashboard/salary" element={<SalaryManager />} />
         </Route>
 
         {/* Catch-all fallback */}
