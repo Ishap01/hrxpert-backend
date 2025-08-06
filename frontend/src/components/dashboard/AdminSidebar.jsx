@@ -33,6 +33,10 @@ const AdminSidebar = () => {
           <FaMoneyBillWave/> 
           <span>Salary</span>
         </NavLink>
+        <NavLink to="/admin-dashboard/payslip" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
+          <FaMoneyBillWave/> 
+          <span>PayslipDownload</span>
+        </NavLink>
          <NavLink to="/salary" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaFilePdf/> 
           <span>Documents</span>

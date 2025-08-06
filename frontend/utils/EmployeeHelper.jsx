@@ -48,7 +48,18 @@ export const fetchDepartments = async () => {
     alert(error?.response?.data?.error || "Department fetch failed")
   }
 }
-
+//employess for salary form 
+export const getEmployees = async (id) => {
+  let employees
+  try {
+    const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`)
+    if (response.data.success) {
+      return response.data.employees
+    }
+  } catch (error) {
+    alert(error?.response?.data?.error || "Employee fetch failed")
+  }
+}
 // Action buttons
 export const EmployeeButton = ({ _id }) => {
   const navigate = useNavigate()

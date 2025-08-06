@@ -8,7 +8,7 @@ import departmentRouter from './routes/department.js'
 import dashboardRouter from './routes/dashboard.js'
 import attendanceRouter  from './routes/attendance.js';
 
-
+import salaryRouter from './routes/salary.js'
 dotenv.config()
 
 const app = express()
@@ -26,7 +26,7 @@ app.use("/api/employee", employeeRouter);
 app.use("/api/dashboard",dashboardRouter)
 app.use('/api/attendance', attendanceRouter);
 app.use("/api/employees", employeeRouter);
-
+app.use("/api/salary",salaryRouter)
 
 const PORT = process.env.PORT || 5000
 console.log('PORT from env:', process.env.PORT);

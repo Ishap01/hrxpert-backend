@@ -1,182 +1,190 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { fetchDepartments, getEmployees } from '../../../utils/EmployeeHelper';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const SalaryManager = () => {
-  const [formData, setFormData] = useState({
-    department: '',
-    employee: '',
-    basicSalary: '',
-    allowance: '',
-    deduction: '',
-    payDate: ''
+  const [salary, setSalary] = useState({
+    employeeId:null,
+    basicSalary:0,
+    allowances:0,
+    deduction:0,
+    payDate:null
   });
+  const [departments , setDepartments] = useState(null)
+   const [employees , setEmployess] = useState([])
 
-  const [salaryHistory, setSalaryHistory] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+useEffect(() => {
+    const getDepartments = async () => {
+      const departments = await fetchDepartments();
+      setDepartments(departments);
+    };
+    getDepartments();
+  }, []);
+
+   
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+   
+      setSalary((prevData) => ({ ...prevData, [name]: value }));
+    
   };
 
-  const handleAddSalary = () => {
-    const total =
-      parseFloat(formData.basicSalary || 0) +
-      parseFloat(formData.allowance || 0) -
-      parseFloat(formData.deduction || 0);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
 
-    const newRecord = {
-      sno: salaryHistory.length + 1,
-      empId: formData.employee,
-      salary: formData.basicSalary,
-      allowance: formData.allowance,
-      deduction: formData.deduction,
-      total: total,
-      payDate: formData.payDate
-    };
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/salary/add`,
+        salary
+      );
 
-    setSalaryHistory([...salaryHistory, newRecord]);
-    setFormData({
-      department: '',
-      employee: '',
-      basicSalary: '',
-      allowance: '',
-      deduction: '',
-      payDate: ''
-    });
+      if (response.data.success) {
+        navigate('/admin-dashboard/employees');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      if (error.response && !error.response.data.success) {
+        alert(error.response.data.error || 'Something went wrong');
+      }
+    }
   };
-
-  const filteredHistory = salaryHistory.filter((entry) =>
-    entry.empId.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
+  const handleDepartment = async(e)=>{
+       const emps = await getEmployees(e.target.value)
+       setEmployess(emps)
+  }
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Add New Salary</h2>
+    <>{departments  ?(
+    <div className="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md">
+      <h2 className="text-2xl font-bold mb-6">Add Salary</h2>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+         {/* Department */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 ">
+              Department
+            </label>
+            <select
+            value={salary.department}
+              name="department"
+             
+               onChange={(e) => {
+              handleChange(e);     
+            handleDepartment(e);     
+             }}
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            >
+              <option value="">Select Department</option>
+              {departments.map((dep) => (
+                <option key={dep._id} value={dep._id}>
+                  {dep.dep_name}
+                </option>
+              ))}
+            </select>
+          </div>
+           {/* Employee */}
+          <div className='col-span-2'>
+            <label className="block text-sm font-medium text-gray-700 ">
+             Employee
+            </label>
+            <select
+           
+              name="employeeId"
+              onChange={handleChange}
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            >
+              <option value="">Select Employee</option>
+              {employees.map((emp) => (
+                <option key={emp._id} value={emp._id}>
+                  {emp.employeeId}
+                </option>
+              ))}
+            </select>
+          </div>
+         
+          
+          {/* Basic Salary*/}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Basic Salary
+            </label>
+            <input
+         
+              type="number"
+              name="basicSalary"
+              onChange={handleChange}
+              placeholder="basic salary"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            />
+          </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-6">
-        <div>
-          <label className="block font-semibold">Department</label>
-          <select
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Department</option>
-            <option value="HR">HR</option>
-            <option value="Tech">Tech</option>
-            <option value="Finance">Finance</option>
-          </select>
+          
+          
+          {/* Allowances */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Allowances
+            </label>
+            <input
+             
+              type="number"
+              name="allowances"
+              onChange={handleChange}
+              placeholder="allowances"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+       
+          {/* Deductions*/}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Deduction
+            </label>
+            <input
+             
+              type="number"
+              name="deduction"
+              onChange={handleChange}
+              placeholder="deduction"
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            />
+          </div>
         </div>
+        {/* Pay Date*/}
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Deduction
+            </label>
+            <input
+             
+              type="date"
+              name="payDate"
+              onChange={handleChange}
+             
+              className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+              required
+            />
+          </div>
 
-        <div>
-          <label className="block font-semibold">Employee</label>
-          <select
-            name="employee"
-            value={formData.employee}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          >
-            <option value="">Select Employee</option>
-            <option value="yousaf222">yousaf222</option>
-            <option value="neeti001">neeti001</option>
-            <option value="isha004">isha004</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block font-semibold">Basic Salary</label>
-          <input
-            type="number"
-            name="basicSalary"
-            value={formData.basicSalary}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Insert Salary"
-          />
-        </div>
-
-        <div>
-          <label className="block font-semibold">Allowances</label>
-          <input
-            type="number"
-            name="allowance"
-            value={formData.allowance}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Monthly Allowances"
-          />
-        </div>
-
-        <div>
-          <label className="block font-semibold">Deductions</label>
-          <input
-            type="number"
-            name="deduction"
-            value={formData.deduction}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            placeholder="Monthly Deductions"
-          />
-        </div>
-
-        <div>
-          <label className="block font-semibold">Pay Date</label>
-          <input
-            type="date"
-            name="payDate"
-            value={formData.payDate}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-      </div>
-
-      <button
-        onClick={handleAddSalary}
-        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
-      >
-        Add Salary
-      </button>
-
-      <div className="mt-10">
-        <h2 className="text-xl font-bold mb-4">Salary History</h2>
-        <input
-          type="text"
-          placeholder="Search By Emp ID"
-          className="mb-4 p-2 border rounded w-64"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-
-        <table className="w-full border-collapse border">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="border px-4 py-2">SNO</th>
-              <th className="border px-4 py-2">EMP ID</th>
-              <th className="border px-4 py-2">SALARY</th>
-              <th className="border px-4 py-2">ALLOWANCE</th>
-              <th className="border px-4 py-2">DEDUCTION</th>
-              <th className="border px-4 py-2">TOTAL</th>
-              <th className="border px-4 py-2">PAY DATE</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredHistory.map((entry) => (
-              <tr key={entry.sno}>
-                <td className="border px-4 py-2">{entry.sno}</td>
-                <td className="border px-4 py-2">{entry.empId}</td>
-                <td className="border px-4 py-2">{entry.salary}</td>
-                <td className="border px-4 py-2">{entry.allowance}</td>
-                <td className="border px-4 py-2">{entry.deduction}</td>
-                <td className="border px-4 py-2">{entry.total}</td>
-                <td className="border px-4 py-2">{entry.payDate}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+        <button
+          type="submit"
+          className="w-full mt-6 bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-md"
+        >
+          Add Salary
+        </button>
+      </form>
     </div>
+    ):<div>Loading...</div>}</>
   );
 };
 
 export default SalaryManager;
+
