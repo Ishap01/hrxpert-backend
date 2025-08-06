@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 //import signup_img  from '../assets/signup_img.png'
 //import img11  from '../assets/img11.png'
+//import hr22 from '../assets/hr22.png'
 import img22  from '../assets/img22.png'
 const Register = () => {
   const navigate = useNavigate();
