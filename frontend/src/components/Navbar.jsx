@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import EmployeeNotifications from './dashboard/EmployeeNotificationPanel';
+import EmployeeNotifications from './employeeDashboard/EmployeeNotificationPanel';
 
 
 const Navbar = ({ username }) => {

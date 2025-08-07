@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { Bell } from 'lucide-react'; // You can also use any icon library
+import { Bell } from 'lucide-react'; 
 
 const EmployeeNotifications = () => {
   const [notifications, setNotifications] = useState([]);
