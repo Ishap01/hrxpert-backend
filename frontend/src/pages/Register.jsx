@@ -6,7 +6,9 @@ import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outl
 //import signup_img  from '../assets/signup_img.png'
 //import img11  from '../assets/img11.png'
 //import hr22 from '../assets/hr22.png'
-import img22  from '../assets/img22.png'
+import hr11 from '../assets/hr11.png'
+//import hr33 from '../assets/hr33.png'
+//import img22  from '../assets/img22.png'
 const Register = () => {
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ const Register = () => {
           <div className="text-white text-center space-y-4">
             <h2 className="text-4xl font-bold">Welcome to HR Xpert</h2>
             <p className="text-lg">Join us and simplify your employee management!</p>
-            <img src={img22} alt="Register" className="w-70 h-70 mx-auto mt-4 bg-transparent" />
+            <img src={hr11} alt="Register" className="w-80 h-80 mx-auto mt-4 bg-transparent" />
           </div>
         </div>
 
