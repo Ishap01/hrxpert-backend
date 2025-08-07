@@ -6,10 +6,10 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import loginVector from '../assets/login_vector.jfif';
-
+import { useAuth } from '../context/authContext';
 const Login = () => {
   const navigate = useNavigate();
-
+    const {login} = useAuth(); 
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
@@ -22,6 +22,7 @@ const Login = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       console.log(localStorage.getItem('user'))
+        login(user,token);
       alert('Login successful');
 
       if (user.role === 'HR') navigate('/hr-dashboard');

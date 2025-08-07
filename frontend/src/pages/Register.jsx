@@ -97,7 +97,7 @@ const Register = () => {
                 >
                   <option value="">Select Role</option>
                   <option value="Employee">Employee</option>
-                  <option value="HR">HR</option>
+                 
                   <option value="Admin">Admin</option>
                 </Field>
                 <ErrorMessage name="role" component="div" className="text-red-500 text-sm mt-1" />
