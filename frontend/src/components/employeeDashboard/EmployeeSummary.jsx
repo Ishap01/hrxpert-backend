@@ -9,8 +9,8 @@ const EmployeeSummary = () => {
             <FaUser/>
       </div>
       <div className='pl-4 py-1'>
-        <p className='text-lg font-semibold'>Welcome Back</p>
-        <p className='text-xl font-bold'>Aditya</p>
+        <p className='text-lg font-semibold'>Dashboard Overview </p>
+      
        
       </div>
     </div>
