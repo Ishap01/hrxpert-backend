@@ -23,7 +23,21 @@ const Payslip = () => {
     }
   };
 
-  const generatePDF = () => {
+ 
+  const sendNotification = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/notifications", {
+        employeeId: salaryData.employeeId.employeeId,
+        employeeName: salaryData.employeeId.name, // Make sure "name" is populated in salaryData
+        message: `Payslip downloaded by ${salaryData.employeeId.name} (${salaryData.employeeId.employeeId})`
+      });
+    } catch (error) {
+      console.error("Failed to send notification:", error);
+    }
+  };
+
+
+  const generatePDF = async () => {
     const doc = new jsPDF();
     doc.setFontSize(14);
     doc.text(`Payslip for ${salaryData.employeeId.employeeId}`, 10, 10);
@@ -32,6 +46,8 @@ const Payslip = () => {
     doc.text(`Deductions: ₹${salaryData.deduction}`, 10, 40);
     doc.text(`Pay Date: ${new Date(salaryData.payDate).toLocaleDateString()}`, 10, 50);
     doc.save(`Payslip_${salaryData.employeeId.employeeId}.pdf`);
+
+    await sendNotification(); 
   };
 
   return (
@@ -58,10 +74,11 @@ const Payslip = () => {
         </div>
 
         {salaryData && (
-          <div className=" p-6 rounded-lg shadow-inner space-y-3">
+          <div className="p-6 rounded-lg shadow-inner space-y-3">
             <h3 className="text-xl font-semibold text-teal-800">Payslip Details</h3>
             <div className="grid grid-cols-2 gap-4 text-gray-800">
               <p><strong>Employee ID:</strong> {salaryData.employeeId.employeeId}</p>
+              <p><strong>Name:</strong> {salaryData.employeeId.name}</p>
               <p><strong>Basic Salary:</strong> ₹{salaryData.basicSalary}</p>
               <p><strong>Allowances:</strong> ₹{salaryData.allowances}</p>
               <p><strong>Deductions:</strong> ₹{salaryData.deduction}</p>

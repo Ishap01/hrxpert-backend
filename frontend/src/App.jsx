@@ -33,7 +33,7 @@ const AdminLayout = () => {
   return (
     <div style={{ display: 'flex' }}>
       <AdminSidebar />
-      <div style={{ marginLeft: '220px', padding: '20px', flex: 1 }}>
+     <div style={{ marginLeft: '220px', padding: '0 20px 20px 20px', flex: 1 }}>
         <Outlet />
       </div>
     </div>
