@@ -1,5 +1,5 @@
 import express from 'express';
-import { createNotification, getAllNotifications } from '../controllers/notificationController.js';
+import { createNotification, getNotifications, getNotificationsByEmployee } from '../controllers/notificationController.js';
 
 const router = express.Router();
 
@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/send', createNotification);
 
 
-//router.get('/', getAllNotifications);
-
+router.get('/admin/get', getNotifications);
+router.get('/employee/:employeeId', getNotificationsByEmployee);
 export default router;

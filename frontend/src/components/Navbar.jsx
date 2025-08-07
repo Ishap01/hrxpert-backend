@@ -1,6 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import EmployeeNotifications from './dashboard/EmployeeNotificationPanel';
+
 
 const Navbar = ({ username }) => {
   return (
@@ -10,6 +12,7 @@ const Navbar = ({ username }) => {
           <i className="bi bi-person-circle"></i> Welcome, {username}
         </span>
         <button className="btn btn-dark">Logout</button>
+    <EmployeeNotifications/>
       </div>
     </nav>
   );

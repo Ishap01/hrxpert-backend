@@ -12,6 +12,7 @@ const Payslip = () => {
       const res = await axios.get(`http://localhost:5000/api/salary/my-payslip/${employeeId}`);
       if (res.data && res.data.success && res.data.salary) {
         setSalaryData(res.data.salary);
+        console.log(salaryData)
         setMessage('');
       } else {
         setSalaryData(null);
@@ -26,10 +27,10 @@ const Payslip = () => {
  
   const sendNotification = async () => {
     try {
-      await axios.post("http://localhost:5000/api/notifications", {
+      await axios.post("http://localhost:5000/api/notification/send", {
         employeeId: salaryData.employeeId.employeeId,
-        employeeName: salaryData.employeeId.name, // Make sure "name" is populated in salaryData
-        message: `Payslip downloaded by ${salaryData.employeeId.name} (${salaryData.employeeId.employeeId})`
+       
+        message: `Payslip downloaded by  ${salaryData.employeeId.employeeId}`
       });
     } catch (error) {
       console.error("Failed to send notification:", error);
