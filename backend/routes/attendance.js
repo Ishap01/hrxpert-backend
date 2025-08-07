@@ -1,7 +1,7 @@
 import express from 'express';
 import Attendance from '../models/Attendance.js';
 import Employee from '../models/Employee.js';
-
+import EmployeeNotification from '../models/EmployeeNotification.js';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -22,12 +22,25 @@ router.post('/', async (req, res) => {
 
     const newAttendance = new Attendance({ employeeId, date: normalizedDate, status });
     await newAttendance.save();
+
+   
+    const message = `Your attendance has been marked as ${status} for ${normalizedDate.toDateString()}`;
+    await EmployeeNotification.create({ employeeId, message });
+
     res.status(201).json(newAttendance);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
-
+router.get('/employee-notifications/:employeeId', async (req, res) => {
+  try {
+    const { employeeId } = req.params;
+    const notifications = await EmployeeNotification.find({ employeeId }).sort({ createdAt: -1 });
+    res.json(notifications);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch notifications' });
+  }
+});
 router.get('/', async (req, res) => {
   try {
     const { date } = req.query;

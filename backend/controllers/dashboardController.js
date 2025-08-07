@@ -5,7 +5,12 @@ const getSummary = async(req,res)=>{
 try{
  const totalEmployees = await Employee.countDocuments();
  const totalDepartments = await Department.countDocuments();
- return res.status(200).json({success:true,totalEmployees,totalDepartments})
+ const totalSalaries = await Employee.aggregate([
+    {$group:{_id: null, totalSalary : {$sum : "$salary"}}}
+ ])
+ 
+  const totalSalary = totalSalaries[0]?.totalSalary || 0;
+ return res.status(200).json({success:true,totalEmployees,totalDepartments,totalSalary})
 }catch(error){
     return res.status(500).json({message:"error in fetching employee count"})
 }

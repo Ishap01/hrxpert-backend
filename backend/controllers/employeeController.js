@@ -1,5 +1,5 @@
 import Employee from "../models/Employee.js"
-import User from "../models/User.js"
+import User from "../models/Users.js"
 import Department from "../models/Department.js"
 import bcrypt from'bcrypt'
 import path from "path"
@@ -48,16 +48,31 @@ const addEmployee = async(req,res)=>{
         return res.status(500).json({success:false, message:"server error in adding employee"})
     }
 }
+// const getEmployee = async(req,res)=>{
+//  try{
+//     const {id} = req.params;
+//     const employee = await Employee.findById({_id:id}).populate('userId',{password:0}).populate("department");
+//   return res.status(200).json({success:true,employee})
+//     }
+//     catch(error){
+//         return res.status(500).json({success:false, error:"get employee server error"})
+//     }
+// }
 const getEmployee = async(req,res)=>{
+  const {id} = req.params;
  try{
-    const {id} = req.params;
-    const employee = await Employee.findById({_id:id}).populate('userId',{password:0}).populate("department");
+    let employee;
+    employee = await Employee.findById({_id:id}).populate('userId',{password:0}).populate("department");
+    if(!employee){
+       employee = await Employee.findOne({userId:id}).populate('userId',{password:0}).populate("department");
+    }
   return res.status(200).json({success:true,employee})
     }
     catch(error){
         return res.status(500).json({success:false, error:"get employee server error"})
     }
 }
+
 const getEmployees =async (req,res)=>{
   try{
         const employees = await Employee.find().populate('userId',{password:0}).populate("department");
@@ -65,6 +80,16 @@ const getEmployees =async (req,res)=>{
     }
     catch(error){
         return res.status(500).json({success:false, error:"get employees server error"})
+    }
+}
+const fetchEmployeeByDepId =async(req,res)=>{
+try{
+    const {id} = req.params;
+    const employees = await Employee.find({department:id});
+  return res.status(200).json({success:true,employees})
+    }
+    catch(error){
+        return res.status(500).json({success:false, error:"get employees by dept id server error"})
     }
 }
 const updateEmployee = async (req, res) => {
@@ -106,4 +131,4 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-export{addEmployee,upload,getEmployees,getEmployee,updateEmployee}
+export{addEmployee,upload,getEmployees,getEmployee,updateEmployee,fetchEmployeeByDepId}

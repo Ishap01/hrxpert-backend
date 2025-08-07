@@ -1,58 +1,117 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { BrowserRouter , Routes , Route } from 'react-router-dom'
-import { Navigate } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from 'react-router-dom';
 
+import Register from './pages/Register';
+import Login from './pages/Login';
+import EmployeeDashboard from './pages/EmployeeDashboard';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminNavbar from './components/dashboard/Navbar';
+import DepartmentList from './components/department/DepartmentList';
+import AddDepartment from './components/department/AddDepartment';
+import EditDepartment from './components/department/EditDepartment';
 
-import AdminDashboard from './pages/AdminDashboard'
-import DepartmentList from './components/department/DepartmentList'
-import AddDepartment from './components/department/AddDepartment'
-import EditDepartment from './components/department/EditDepartment'
-import List from './components/employee/List'
-import Add from './components/employee/Add'
-import View from './components/employee/View'
-import Edit from './components/employee/Edit'
-import AdminSidebar from './components/dashboard/AdminSidebar'
-import AttendanceManager from './components/attendance/AttendanceManager'
-import LeaveManager from './components/leave/LeaveManager'
+import List from './components/employee/List';
+import Add from './components/employee/Add';
+import View from './components/employee/View';
+import Edit from './components/employee/Edit';
+
+import AttendanceManager from './components/attendance/AttendanceManager';
+import LeaveManager from './components/leave/LeaveManager';
+
+import AdminSidebar from './components/dashboard/AdminSidebar';
+import PrivateRoute from '../utils/PrivateRoutes';
 import SalaryManager from './components/salary/SalaryManager'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import ViewSalary from './components/salary/ViewSalary';
+import PayslipDownload from './components/PayslipDownload';
+import Sidebar from './components/employeeDashboard/Sidebar';
+import Navbar from './components/employeeDashboard/EmployeeNavbar';
+import MyProfile from './components/employeeDashboard/MyProfile';
+// Admin layout component directly in this file
+const AdminLayout = () => {
   return (
-    <>
-      <BrowserRouter>
-      <div style={{ display: 'flex' }}>
-        <AdminSidebar />
-        <div style={{ marginLeft: '256px', flex: 1 }}>
+    <div style={{ display: 'flex' }}>
+      <AdminSidebar />
+      <div style={{ marginLeft: '16rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <AdminNavbar/>
+     <div style={{padding: '0 20px 20px 20px', flex: 1 }}>
+        <Outlet />
+      </div>
+     </div>
+    </div>
+  );
+};
+const EmployeeLayout = () => {
+  return (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <Sidebar />
+      <div style={{ marginLeft: '16rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <Navbar  /> {/* Or fetch from AuthContext */}
+       <div style={{ flex: 1, overflow: 'auto', backgroundColor: '#f3f4f6', padding: '1rem' }}>
+        <Outlet />
+      </div>
+      </div>
+    </div>
+  );
+};
+
+
+export default function App() {
+  return (
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/admin-dashboard"/>}></Route>
-        <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
-        <Route path="/admin-dashboard/department" element={<DepartmentList/>}/>
-        <Route path="/admin-dashboard/add-department" element={<AddDepartment/>}/>
 
-        <Route path="/admin-dashboard/department/:id" element={<EditDepartment/>}/>
-        <Route path="/admin-dashboard/employee/edit/:id" element={<Edit/>}/>
-        <Route path="/admin-dashboard/employees" element={<List/>}/>
-        <Route path="/admin-dashboard/employee/:id" element={<View/>}/>
-        <Route path="/admin-dashboard/add-employee" element={<Add/>}/>
-        <Route path="/admin-dashboard/attendance" element={<AttendanceManager />} />
-        <Route path="/admin-dashboard/leave" element={<LeaveManager />} />
-        <Route path="/admin-dashboard/salary" element={<SalaryManager />} />
-        
+       
+        <Route path="/" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
+      
+        <Route
+          path="/employee-dashboard"
+          element={
+            <PrivateRoute>
+              <EmployeeLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<EmployeeDashboard />} ></Route>
+         <Route path="myprofile/:id" element={<MyProfile />} ></Route>
+         <Route path="/employee-dashboard/payslip" element={<PayslipDownload />} />
+         </Route>
+
+       
+        <Route
+          path="/admin-dashboard"
+          element={
+            <PrivateRoute>
+              <AdminLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="department" element={<DepartmentList />} />
+          <Route path="add-department" element={<AddDepartment />} />
+          <Route path="department/:id" element={<EditDepartment />} />
+          <Route path="employees" element={<List />} />
+          <Route path="add-employee" element={<Add />} />
+          <Route path="employee/:id" element={<View />} />
+          <Route path="employee/edit/:id" element={<Edit />} />
+          <Route path="attendance" element={<AttendanceManager />} />
+          <Route path="leave" element={<LeaveManager />} />
+           <Route path="/admin-dashboard/salary" element={<SalaryManager />} />
+            <Route path="/admin-dashboard/employee/salary/:id" element={<ViewSalary />} />
+            
+           
+        </Route>
+
+        {/* Catch-all fallback */}
+        <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>
-      </div>
-      </div>
-      </BrowserRouter>
-      
-    </>
-  )
+    </BrowserRouter>
+  );
 }
-
-export default App
-

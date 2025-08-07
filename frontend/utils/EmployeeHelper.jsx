@@ -48,26 +48,37 @@ export const fetchDepartments = async () => {
     alert(error?.response?.data?.error || "Department fetch failed")
   }
 }
-
+//employess for salary form 
+export const getEmployees = async (id) => {
+  let employees
+  try {
+    const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`)
+    if (response.data.success) {
+      return response.data.employees
+    }
+  } catch (error) {
+    alert(error?.response?.data?.error || "Employee fetch failed")
+  }
+}
 // Action buttons
 export const EmployeeButton = ({ _id }) => {
   const navigate = useNavigate()
 
   return (
     <div className="flex space-x-3">
-      <button className="px-2 py-1 bg-teal-600 text-white text-sm rounded"
+      <button className="px-4 py-2 mx-3 bg-teal-300 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/${_id}`)}>
         View
       </button>
-      <button className="px-2 py-1 bg-green-600 text-white text-sm rounded"
+      <button className="px-4 py-2 mx-3 bg-red-400 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/edit/${_id}`)}>
         Edit
       </button>
-      <button className="px-2 py-1 bg-yellow-600 text-white text-sm rounded"
+      <button className="px-4 py-2 mx-3 bg-yellow-300 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/salary/${_id}`)}>
         Salary
       </button>
-      <button className="px-2 py-1 bg-blue-600 text-white text-sm rounded"
+      <button className="px-4 py-2 mx-3 bg-blue-300 text-white text-sm rounded"
         onClick={() => navigate(`/admin-dashboard/employee/leave/${_id}`)}>
         Leave
       </button>
