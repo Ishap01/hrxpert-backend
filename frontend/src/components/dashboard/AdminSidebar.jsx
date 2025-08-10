@@ -21,7 +21,7 @@ const AdminSidebar = () => {
           <FaBuilding/> 
           <span>Departments</span>
         </NavLink>
-         <NavLink to="/admin-dashboard/leave" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline  flex items-center space-x-4 py-2.5 px-4 rounded`}>
+         <NavLink to="/admin-dashboard/leaves" className={({ isActive }) =>`${isActive ? "bg-teal-300" : ""} text-white no-underline  flex items-center space-x-4 py-2.5 px-4 rounded`}>
           <FaClipboardList/> 
           <span>Leave</span>
         </NavLink>

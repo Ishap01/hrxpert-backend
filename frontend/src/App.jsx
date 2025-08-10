@@ -22,6 +22,9 @@ import Edit from './components/employee/Edit';
 
 import AttendanceManager from './components/attendance/AttendanceManager';
 import LeaveManager from './components/leave/LeaveManager';
+import LeaveList from './components/leave/List';
+import AddLeave from './components/leave/Add';
+import LeaveDetail from './components/leave/LeaveDetail';
 
 import AdminSidebar from './components/dashboard/AdminSidebar';
 import PrivateRoute from '../utils/PrivateRoutes';
@@ -81,6 +84,8 @@ export default function App() {
           <Route index element={<EmployeeDashboard />} ></Route>
          <Route path="myprofile/:id" element={<MyProfile />} ></Route>
          <Route path="/employee-dashboard/payslip" element={<PayslipDownload />} />
+         <Route path="leaves/:id" element={<LeaveList />} />
+         <Route path="add-leave" element={<AddLeave />} />
          </Route>
 
        
@@ -101,7 +106,9 @@ export default function App() {
           <Route path="employee/:id" element={<View />} />
           <Route path="employee/edit/:id" element={<Edit />} />
           <Route path="attendance" element={<AttendanceManager />} />
-          <Route path="leave" element={<LeaveManager />} />
+          <Route path="leaves" element={<LeaveManager />} />
+          <Route path="leaves/:id" element={<LeaveDetail />} />
+          <Route path="employee/leaves/:id" element={<LeaveList />} />
            <Route path="/admin-dashboard/salary" element={<SalaryManager />} />
             <Route path="/admin-dashboard/employee/salary/:id" element={<ViewSalary />} />
             

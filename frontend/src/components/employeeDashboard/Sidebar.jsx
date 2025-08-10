@@ -46,7 +46,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
-          to="/employee-dashboard/leave"
+          to={`/employee-dashboard/leaves/${user._id}`}
           className={({ isActive }) =>
             `${isActive ? 'bg-teal-300' : ''} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`
           }

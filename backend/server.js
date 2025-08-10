@@ -9,6 +9,7 @@ import dashboardRouter from './routes/dashboard.js'
 import attendanceRouter  from './routes/attendance.js';
 import notificationRouter  from './routes/notification.js';
 import salaryRouter from './routes/salary.js'
+import leaveRouter from './routes/leave.js';
 dotenv.config()
 
 const app = express()
@@ -26,6 +27,7 @@ app.use("/api/employee", employeeRouter);
 app.use("/api/dashboard",dashboardRouter)
 app.use('/api/attendance', attendanceRouter);
 app.use("/api/employees", employeeRouter);
+app.use('/api/leave', leaveRouter);
 app.use("/api/salary",salaryRouter)
 app.use('/api/notification',notificationRouter)
 const PORT = process.env.PORT || 5000

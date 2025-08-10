@@ -79,7 +79,7 @@ export const EmployeeButton = ({ _id }) => {
         Salary
       </button>
       <button className="px-4 py-2 mx-3 bg-blue-300 text-white text-sm rounded"
-        onClick={() => navigate(`/admin-dashboard/employee/leave/${_id}`)}>
+        onClick={() => navigate(`/admin-dashboard/employee/leaves/${_id}`)}>
         Leave
       </button>
     </div>
