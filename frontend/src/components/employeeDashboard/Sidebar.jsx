@@ -65,15 +65,7 @@ const Sidebar = () => {
           <span>PayslipDownload</span>
         </NavLink>
 
-        <NavLink
-          to="/employee-dashboard/document"
-          className={({ isActive }) =>
-            `${isActive ? 'bg-teal-300' : ''} text-white no-underline flex items-center space-x-4 py-2.5 px-4 rounded`
-          }
-        >
-          <FaFilePdf />
-          <span>Documents Upload</span>
-        </NavLink>
+        
       </div>
     </div>
   );

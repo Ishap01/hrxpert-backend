@@ -7,7 +7,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-
+     
     if (!user) {
       return res.status(404).json({ success: false, error: "User Not Found" });
     }
@@ -52,10 +52,18 @@ const login = async (req, res) => {
 const register = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
+    const existingEmployee = await User.findOne({email});
+    if(existingEmployee){
+      return res.status(400).json({message:"Email is already registered"});
+    }
+    else{
+
+    
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: hashedPassword, role });
     await newUser.save();
     res.status(201).send("User registered");
+    }
   } catch (err) {
     res.status(400).send("Error registering user");
   }

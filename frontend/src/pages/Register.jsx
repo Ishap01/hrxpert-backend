@@ -7,11 +7,12 @@ import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outl
 //import img11  from '../assets/img11.png'
 //import hr22 from '../assets/hr22.png'
 import hr11 from '../assets/hr11.png'
+import { useState } from 'react';
 //import hr33 from '../assets/hr33.png'
 //import img22  from '../assets/img22.png'
 const Register = () => {
   const navigate = useNavigate();
-
+  const[error, setError] = useState("")
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email().required("Email is required"),
@@ -26,6 +27,9 @@ const Register = () => {
       resetForm();
       navigate('/login');
     } catch (err) {
+      if(err.response && err.response.status ===400){
+        setError(err.response.data.message); 
+      }
       alert("Registration failed. Try again.");
     }
   };
@@ -54,6 +58,7 @@ const Register = () => {
           >
             <Form className="space-y-5">
               {/* Name */}
+                {error && <p style={{ color: "red" }}>{error}</p>}
               <div className="relative">
                 <UserIcon className="h-5 w-5 absolute left-3 top-3.5 text-gray-400" />
                 <Field

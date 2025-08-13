@@ -74,48 +74,45 @@ export default function App() {
 
       
         <Route
-          path="/employee-dashboard"
-          element={
-            <PrivateRoute>
-              <EmployeeLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<EmployeeDashboard />} ></Route>
-         <Route path="myprofile/:id" element={<MyProfile />} ></Route>
-         <Route path="/employee-dashboard/payslip" element={<PayslipDownload />} />
-         <Route path="leaves/:id" element={<LeaveList />} />
-         <Route path="add-leave" element={<AddLeave />} />
-         </Route>
-
+  path="/employee-dashboard"
+  element={
+    <PrivateRoute>
+      <EmployeeLayout />
+    </PrivateRoute>
+  }
+>
+  <Route index element={<EmployeeDashboard />} />
+  <Route path="myprofile/:id" element={<MyProfile />} />
+  <Route path="payslip" element={<PayslipDownload />} /> {/* fixed */}
+  <Route path="leaves/:id" element={<LeaveList />} />
+  <Route path="add-leave" element={<AddLeave />} />
+</Route>
        
-        <Route
-          path="/admin-dashboard"
-          element={
-            <PrivateRoute>
-              <AdminLayout />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<AdminDashboard />} />
-          <Route path="department" element={<DepartmentList />} />
-          <Route path="add-department" element={<AddDepartment />} />
-          <Route path="department/:id" element={<EditDepartment />} />
-          <Route path="employees" element={<List />} />
-          <Route path="add-employee" element={<Add />} />
-          <Route path="employee/:id" element={<View />} />
-          <Route path="employee/edit/:id" element={<Edit />} />
-          <Route path="attendance" element={<AttendanceManager />} />
-          <Route path="leaves" element={<LeaveManager />} />
-          <Route path="leaves/:id" element={<LeaveDetail />} />
-          <Route path="employee/leaves/:id" element={<LeaveList />} />
-           <Route path="/admin-dashboard/salary" element={<SalaryManager />} />
-            <Route path="/admin-dashboard/employee/salary/:id" element={<ViewSalary />} />
-            
-           
-        </Route>
+       <Route
+  path="/admin-dashboard"
+  element={
+    <PrivateRoute>
+      <AdminLayout />
+    </PrivateRoute>
+  }
+>
+  <Route index element={<AdminDashboard />} />
+  <Route path="department" element={<DepartmentList />} />
+  <Route path="add-department" element={<AddDepartment />} />
+  <Route path="department/:id" element={<EditDepartment />} />
+  <Route path="employees" element={<List />} />
+  <Route path="add-employee" element={<Add />} />
+  <Route path="employee/:id" element={<View />} />
+  <Route path="employee/edit/:id" element={<Edit />} />
+  <Route path="attendance" element={<AttendanceManager />} />
+  <Route path="leaves" element={<LeaveManager />} />
+  <Route path="leaves/:id" element={<LeaveDetail />} />
+  <Route path="employee/leaves/:id" element={<LeaveList />} />
+  <Route path="salary" element={<SalaryManager />} /> 
+  <Route path="employee/salary/:id" element={<ViewSalary />} /> 
+</Route>
 
-        {/* Catch-all fallback */}
+      
         <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>
