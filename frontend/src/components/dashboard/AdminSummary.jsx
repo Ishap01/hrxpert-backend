@@ -30,9 +30,9 @@ const AdminSummary = () => {
   ]
 
   const leaveStatusData = [
-    { name: 'Pending', value: 4 },
-    { name: 'Approved', value: 6 },
-    { name: 'Rejected', value: 3 }
+    { name: 'Pending', value: summary?.leaveSummary?.pending||0},
+    { name: 'Approved', value: summary?.leaveSummary?.approved||0},
+    { name: 'Rejected', value: summary?.leaveSummary?.rejected||0}
   ]
 
   const COLORS = ['#14b8a6', '#facc15', '#f87171'] 
