@@ -54,7 +54,7 @@ const DepartmentList = () => {
    <>{deptLoading?<div>Loading....</div>:
     <div className='p-5'>
       <div className='text-center'>
-        <h3 className='text-2xl font-bold'>Manage Deparments</h3>
+        <h3 className='text-2xl font-bold'>Manage Departments</h3>
       </div>
       <div className='flex justify-between items-center'>
         <input type="text" placeholder='Search By Dep Name' className='px-4 py-0.5' onChange={filterDepartments}/>
