@@ -24,7 +24,7 @@ const AdminSummary = () => {
   const [summary, setSummary] = useState(null)
 
   const leaveTypeData = [
-    { type: 'Sick Leave', count: 5 },
+    { type: 'Sick Leave', count: 2 },
     { type: 'Casual Leave', count: 3 },
     { type: 'Earned Leave', count: 2 }
   ]
@@ -57,7 +57,7 @@ const AdminSummary = () => {
     <div className="pt-0 px-6 pb-6 bg-gray-100 min-h-screen font-sans">
       <h3 className="text-3xl font-bold text-teal-700 text-center mb-10">Admin Dashboard Overview</h3>
 
-      {/* Summary Cards */}
+    
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <SummaryCard
           icon={FaUsers}
