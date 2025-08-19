@@ -73,7 +73,7 @@ const EmployeeNotifications = () => {
               {notifications.map((note) => (
                 <li key={note._id} className="p-3 hover:bg-gray-50 transition">
                   <p className="text-sm text-gray-800">{note.message}</p>
-                  <p className="text-xs text-gray-500 mt-1 text-right">{new Date(note.timestamp).toLocaleString()}</p>
+                  {/* <p className="text-xs text-gray-500 mt-1 text-right">{new Date(note.timestamp).toLocaleString()}</p> */}
                 </li>
               ))}
             </ul>

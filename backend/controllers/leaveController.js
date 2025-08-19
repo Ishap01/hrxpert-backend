@@ -1,7 +1,5 @@
 import Leave from '../models/Leave.js'
 import Employee from '../models/Employee.js'
-import path from 'path';
-import mongoose from 'mongoose';
 
 const addLeave = async (req, res) => {
     try{

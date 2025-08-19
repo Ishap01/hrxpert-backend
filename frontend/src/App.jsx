@@ -8,7 +8,7 @@ import {
 
 import Register from './pages/Register';
 import Login from './pages/Login';
-import EmployeeDashboard from './pages/EmployeeDashboard';
+import EmployeeDashboard from './components/employeeDashboard/Dashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminNavbar from './components/dashboard/Navbar';
 import DepartmentList from './components/department/DepartmentList';
@@ -22,7 +22,7 @@ import Edit from './components/employee/Edit';
 
 import AttendanceManager from './components/attendance/AttendanceManager';
 import LeaveManager from './components/leave/LeaveManager';
-import LeaveList from './components/leave/List';
+import LeaveList from './components/employeeDashboard/List';
 import AddLeave from './components/leave/Add';
 import LeaveDetail from './components/leave/LeaveDetail';
 
@@ -30,9 +30,8 @@ import AdminSidebar from './components/dashboard/AdminSidebar';
 import PrivateRoute from '../utils/PrivateRoutes';
 import SalaryManager from './components/salary/SalaryManager'
 import ViewSalary from './components/salary/ViewSalary';
-import PayslipDownload from './components/PayslipDownload';
-import Sidebar from './components/employeeDashboard/Sidebar';
-import Navbar from './components/employeeDashboard/EmployeeNavbar';
+import EmployeeLayout from './pages/EmployeeDashboardLayout';
+import PayslipDownload from './components/employeeDashboard/PayslipDownload';
 import MyProfile from './components/employeeDashboard/MyProfile';
 // Admin layout component directly in this file
 const AdminLayout = () => {
@@ -45,19 +44,6 @@ const AdminLayout = () => {
         <Outlet />
       </div>
      </div>
-    </div>
-  );
-};
-const EmployeeLayout = () => {
-  return (
-    <div style={{ display: 'flex', height: '100vh' }}>
-      <Sidebar />
-      <div style={{ marginLeft: '16rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Navbar  /> 
-       <div style={{ flex: 1, overflow: 'auto', backgroundColor: '#f3f4f6', padding: '1rem' }}>
-        <Outlet />
-      </div>
-      </div>
     </div>
   );
 };
@@ -83,7 +69,7 @@ export default function App() {
 >
   <Route index element={<EmployeeDashboard />} />
   <Route path="myprofile/:id" element={<MyProfile />} />
-  <Route path="payslip" element={<PayslipDownload />} /> {/* fixed */}
+  <Route path="payslip" element={<PayslipDownload />} />
   <Route path="leaves/:id" element={<LeaveList />} />
   <Route path="add-leave" element={<AddLeave />} />
 </Route>

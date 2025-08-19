@@ -10,6 +10,6 @@ router.post('/login',login)
 // Register
 router.post('/register', register)
 
-router.post('/verify',authMiddelware,verify)
+router.get('/verify',authMiddelware,verify)
 
 export default router;

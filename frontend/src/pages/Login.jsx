@@ -22,7 +22,7 @@ const Login = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       console.log(localStorage.getItem('user'))
-        login(user,token);
+        login(user);
       alert('Login successful');
 
       if (user.role === 'HR') navigate('/hr-dashboard');

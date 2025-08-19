@@ -1,6 +1,5 @@
 import Employee from "../models/Employee.js"
 import User from "../models/Users.js"
-import Department from "../models/Department.js"
 import bcrypt from'bcrypt'
 import path from "path"
 import multer from 'multer'
@@ -48,16 +47,6 @@ const addEmployee = async(req,res)=>{
         return res.status(500).json({success:false, message:"server error in adding employee"})
     }
 }
-// const getEmployee = async(req,res)=>{
-//  try{
-//     const {id} = req.params;
-//     const employee = await Employee.findById({_id:id}).populate('userId',{password:0}).populate("department");
-//   return res.status(200).json({success:true,employee})
-//     }
-//     catch(error){
-//         return res.status(500).json({success:false, error:"get employee server error"})
-//     }
-// }
 const getEmployee = async(req,res)=>{
   const {id} = req.params;
  try{
