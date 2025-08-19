@@ -89,7 +89,7 @@ const filterByButton = (status) => {
         pagination />
       </div>
     </div>
-    ): <div className="text-center">Loading...</div>},
+    ): <div className="text-center">Loading...</div>}
     </>
   );
 };

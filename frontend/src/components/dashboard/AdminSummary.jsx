@@ -34,7 +34,7 @@ const AdminSummary = () => {
 
   return (
     <div className="pt-0 px-6 pb-6 bg-gray-100 h-140 font-sans">
-      <h3 className="text-3xl font-bold text-teal-700 text-center mb-10">Admin Dashboard Overview</h3>
+      <h3 className="text-3xl mt-2 py-5 font-bold text-teal-700 text-center mb-10">Admin Dashboard Overview</h3>
 
     
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
