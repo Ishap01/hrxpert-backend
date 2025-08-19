@@ -30,7 +30,7 @@ const EmployeeNotifications = () => {
     fetchNotifications();
   }, [employeeId, role]);
 
-  // Close dropdown when clicked outside
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

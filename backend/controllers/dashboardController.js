@@ -19,6 +19,7 @@ const getSummary = async (req, res) => {
     ]);
 
     const leaveSummary = {
+      appliedFor : employeeAppliedForLeave.length,
       approved: leaveStatus.find(item => item._id === "Approved")?.count || 0,
       rejected: leaveStatus.find(item => item._id === "Rejected")?.count || 0,
       pending: leaveStatus.find(item => item._id === "Pending")?.count || 0,
@@ -29,7 +30,8 @@ const getSummary = async (req, res) => {
       totalEmployees,
       totalDepartments,
       totalSalary,
-      leaveSummary
+      leaveSummary,
+    
     });
   } catch (error) {
     console.error("Dashboard summary error:", error); // ✅ log actual error
