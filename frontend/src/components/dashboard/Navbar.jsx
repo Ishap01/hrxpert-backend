@@ -1,9 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import NotificationPanel from './NotificationPanel';
+import { useAuth } from '../../context/authContext';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
+
+    const handleLogout = () => {
+    logout();              
+    navigate('/');         
+  };
+
  const storedUser = localStorage.getItem('user');
   const user = storedUser ? JSON.parse(storedUser) : null;
   const username = user?.name || 'user';
@@ -17,7 +25,7 @@ const Navbar = () => {
         <NotificationPanel />
         <button
           className='px-4 py-1 bg-teal-500 hover:bg-teal-700 rounded'
-          onClick={() => navigate("/")}
+          onClick={handleLogout}
         >
           Logout
         </button>
